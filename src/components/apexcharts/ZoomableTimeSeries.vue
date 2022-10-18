@@ -65,9 +65,6 @@ export default {
                 return val.toFixed(2);
               },
           },
-          title : {
-            text: this.stat
-          },
         },
         xaxis     : {
           type: 'datetime',
