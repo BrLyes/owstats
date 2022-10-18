@@ -26,10 +26,7 @@ export default {
       type    : String,
       required: true
     },
-    value     : {
-      type    : String,
-      required: true
-    },
+    value     : null,
     icon: {
       type: String,
       required: false,
