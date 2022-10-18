@@ -31,7 +31,7 @@
                             :before="date.formatDate(new Date(), 'YYYY-MM-DD')"
                             :after="date.formatDate(date.subtractFromDate(date.formatDate(new Date(), 'YYYY-MM-DD'), {days: 30}),'YYYY-MM-DD')"
                             stat="accuracy"
-                            :min-games="20"
+                            :min-games="10"
         />
       </div>
       <div class="q-pa-md col-6">
@@ -39,7 +39,7 @@
                             icon="whatshot"
                             :before="date.formatDate(new Date(), 'YYYY-MM-DD')"
                             :after="date.formatDate(date.subtractFromDate(date.formatDate(new Date(), 'YYYY-MM-DD'), {days: 30}),'YYYY-MM-DD')"
-                            :min-games="20"
+                            :min-games="10"
                             stat="damage"
         />
       </div>
@@ -49,22 +49,22 @@
       <StatCard character="ashe"
                    icon="gps_fixed"
                    stat="accuracy"
-                   :value="averageStats.accuracy.toFixed(2)"
+                   :value="averageStats.accuracy"
                    unit="%" />
       <StatCard character="ashe"
                    icon="whatshot"
                    stat="damage"
-                   :value="averageStats.damage.toFixed(2)"
+                   :value="averageStats.damage"
                    unit="" />
       <StatCard character="ashe"
                    icon="location_searching"
                    stat="kill"
-                   :value="averageStats.kill.toFixed(2)"
+                   :value="averageStats.kill"
                    unit="" />
       <StatCard character="ashe"
                    icon="sick"
                    stat="death"
-                   :value="averageStats.death.toFixed(2)"
+                   :value="averageStats.death"
                    unit="" />
     </div>
     <SectionSeparator title="Latest stats" />
