@@ -10,9 +10,10 @@ export const userStore = defineStore('user', {
   },
 
   actions: {
-    setUser(user) {
+    setUser(user, token) {
       this.user = user;
-      localStorage.setItem("user",JSON.stringify(user));
+      this.user.token = token;
+      localStorage.setItem("user",JSON.stringify(this.user));
     },
   }
 })

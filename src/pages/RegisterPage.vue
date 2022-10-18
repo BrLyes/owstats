@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md row window-height col-12 items-center justify-between flex flex-center absolute-full bg-primary">
     <div class="col-xs-12 offset-xs-0 col-sm-4 absolute-center cyberpunk-border text-primary">
-      <q-card class="col-12" >
+      <q-card class="col-12">
         <q-card-section class="text-h1 text-primary text-uppercase text-bold text-center text-center">
           <q-img src="~assets/quasar-logo-vertical.svg"
                  style=" max-width: 200px" />
@@ -65,6 +65,17 @@
               label-color="primary"
               input-class="text-primary"
             />
+            <div hidden>
+              <q-checkbox
+                v-model="formData.rememberMe"
+                dense
+                keep-color
+                color="primary"
+                label-color="primary"
+                input-class="text-primary"
+                label="Remember me"
+              />
+            </div>
             <div class="q-pt-md row justify-between">
               <q-btn label="Register"
                      type="submit"
@@ -96,8 +107,8 @@ import {userStore} from 'stores/user';
 export default {
   data() {
     return {
-      userStore: userStore(),
-      loading: false,
+      userStore   : userStore(),
+      loading     : false,
       passwordType: 'password',
       passwordIcon: 'visibility',
       formData    : {
@@ -105,20 +116,24 @@ export default {
         email                : '',
         password             : '',
         password_confirmation: '',
+        rememberMe           : true,
       },
     };
   },
   methods: {
     onSubmit() {
-      this.loading=true;
-      api.post('/register', this.formData).then((response) => {
-          this.userStore.setUser(response.data.user);
-          this.$router.push('/');
-      }).catch((error) => {
-          //handle errors
-      }).finally(() => {
-        this.loading=false;
-      });
+      this.loading = true;
+      api.post('/register', this.formData).then((response) =>
+                                                {
+                                                  this.userStore.setUser(response.data.user, response.data.token);
+                                                  this.$router.push('/');
+                                                }).catch((error) =>
+                                                         {
+                                                           //TODO: handle errors
+                                                         }).finally(() =>
+                                                                    {
+                                                                      this.loading = false;
+                                                                    });
     },
     forgetPassword() {
       //TODO: forgot password page
