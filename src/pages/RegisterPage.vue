@@ -123,17 +123,20 @@ export default {
   methods: {
     onSubmit() {
       this.loading = true;
-      api.post('/register', this.formData).then((response) =>
-                                                {
-                                                  this.userStore.setUser(response.data.user, response.data.token);
-                                                  this.$router.push('/');
-                                                }).catch((error) =>
-                                                         {
-                                                           //TODO: handle errors
-                                                         }).finally(() =>
-                                                                    {
-                                                                      this.loading = false;
-                                                                    });
+      api.post('/register', this.formData)
+          .then((response) =>
+          {
+            this.userStore.login(response.data.user, response.data.token);
+            this.$router.go('/');
+          })
+      .catch((error) =>
+         {
+           //TODO: handle errors
+         })
+      .finally(() =>
+        {
+          this.loading = false;
+        });
     },
     forgetPassword() {
       //TODO: forgot password page

@@ -29,6 +29,9 @@ export default route(function (/* { store, ssrContext } */) {
 
   Router.beforeEach((to) => {
     const store = userStore();
+    if(store.isLoggedIn && to.meta.mustBeLoggedOut){
+      return '/';
+    }
     if(to.meta.requiresAuth && !store.isLoggedIn){
       return '/register';
     }

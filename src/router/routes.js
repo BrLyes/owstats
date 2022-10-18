@@ -16,6 +16,7 @@ const routes = [
   },
   {
     path     : '/register',
+    meta     : {mustBeLoggedOut: true},
     component: () => import('pages/RegisterPage.vue')
   },
 

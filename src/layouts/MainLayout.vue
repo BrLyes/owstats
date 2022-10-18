@@ -4,9 +4,9 @@
       <q-toolbar>
         <q-toolbar-title>
           <!-- TODO: Add logo here -->
-          {{ name }}
+          {{ name }} v{{version}}
         </q-toolbar-title>
-        <div>{{ version }}</div>
+        <button @click="userStore.logout()">logout</button>
       </q-toolbar>
     </q-header>
 
