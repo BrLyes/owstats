@@ -6,7 +6,6 @@
           <!-- TODO: Add logo here -->
           {{ name }}
         </q-toolbar-title>
-
         <div>{{ version }}</div>
       </q-toolbar>
     </q-header>
@@ -28,7 +27,6 @@
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap ">
               <character-slide character="Ashe"/>
             </div>
-
           </q-carousel-slide>
         </q-carousel>
       </div>
@@ -41,6 +39,7 @@
 import {defineComponent, ref} from 'vue'
 import {name, version} from '../../package.json'
 import CharacterSlide from 'components/qCarouselSlide/CharacterSlide';
+import {userStore} from 'stores/user';
 
 export default defineComponent({
   name   : 'MainLayout',
@@ -55,10 +54,11 @@ export default defineComponent({
   methods: {
     routeTo(page) {
       this.$router.push(page);
-    }
+    },
   },
   data() {
     return {
+      userStore: userStore(),
       version,
       name,
     }

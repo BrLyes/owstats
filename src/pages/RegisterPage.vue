@@ -1,3 +1,141 @@
 <template>
-  <q-page class="flex flex-center"/>
+  <div class="q-pa-md row window-height col-12 items-center justify-between flex flex-center absolute-full bg-primary">
+    <div class="col-xs-12 offset-xs-0 col-sm-4 absolute-center cyberpunk-border text-primary">
+      <q-card class="col-12" >
+        <q-card-section class="text-h1 text-primary text-uppercase text-bold text-center text-center">
+          <q-img src="~assets/quasar-logo-vertical.svg"
+                 style=" max-width: 200px" />
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <q-form @submit="onSubmit"
+                  class="q-gutter-md q-mt-md">
+            <q-input
+              v-model="formData.name"
+              type="text"
+              label="Username"
+              filled
+              :disable="loading"
+              class="q-mb-md"
+              color="primary"
+              autocomplete="name"
+              label-color="primary"
+              input-class="text-primary"
+            />
+            <q-input
+              v-model="formData.email"
+              type="email"
+              label="Email address"
+              filled
+              :disable="loading"
+              class="q-mb-md"
+              color="primary"
+              autocomplete="email"
+              label-color="primary"
+              input-class="text-primary"
+            />
+
+            <q-input
+              v-model="formData.password"
+              :type="passwordType"
+              label="Password"
+              filled
+              :disable="loading"
+              color="primary"
+              autocomplete="new-password"
+              label-color="primary"
+              input-class="text-primary"
+            >
+              <template v-slot:append>
+                <q-icon
+                  style="cursor:pointer"
+                  :name="passwordIcon"
+                  @click="togglePassword"
+                />
+              </template>
+            </q-input>
+
+            <q-input
+              v-model="formData.password_confirmation"
+              type="password"
+              label="Password confirmation"
+              filled
+              :disable="loading"
+              color="primary"
+              autocomplete="new-password"
+              label-color="primary"
+              input-class="text-primary"
+            />
+            <div class="q-pt-md row justify-between">
+              <q-btn label="Register"
+                     type="submit"
+                     color="primary"
+                     icon="login"
+                     :loading="loading"
+                     class="col-5" />
+              <q-btn
+                class="col-5"
+                label="Forgot password"
+                disable
+                color="primary"
+                icon="key"
+                :loading="loading"
+                @click="forgetPassword"
+              />
+            </div>
+          </q-form>
+        </q-card-section>
+      </q-card>
+    </div>
+  </div>
 </template>
+
+<script>
+import {api} from 'boot/axios';
+import {userStore} from 'stores/user';
+
+export default {
+  data() {
+    return {
+      userStore: userStore(),
+      loading: false,
+      passwordType: 'password',
+      passwordIcon: 'visibility',
+      formData    : {
+        name                 : '',
+        email                : '',
+        password             : '',
+        password_confirmation: '',
+      },
+    };
+  },
+  methods: {
+    onSubmit() {
+      this.loading=true;
+      api.post('/register', this.formData).then((response) => {
+          this.userStore.setUser(response.data.user);
+          this.$router.push('/');
+      }).catch((error) => {
+          //handle errors
+      }).finally(() => {
+        this.loading=false;
+      });
+    },
+    forgetPassword() {
+      //TODO: forgot password page
+      this.$router.push('/forgot-password');
+    },
+    togglePassword() {
+      if (this.passwordType === 'password')
+        {
+          this.passwordType = 'text';
+          this.passwordIcon = 'visibility_off';
+        }
+      else
+        {
+          this.passwordType = 'password';
+          this.passwordIcon = 'visibility';
+        }
+    },
+  },
+};
+</script>

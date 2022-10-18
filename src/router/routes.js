@@ -1,20 +1,21 @@
 const routes = [
   {
     path     : '/',
+    meta     : {requiresAuth: true},
     component: () => import('layouts/MainLayout.vue'),
     children : [
       {
-        path      : '',
+        path     : '',
         component: () => import('pages/IndexPage.vue')
       },
       {
-        path: '/ashe',
+        path     : '/ashe',
         component: () => import('pages/AsheStat.vue'),
       }
     ],
   },
   {
-    path      : '/register',
+    path     : '/register',
     component: () => import('pages/RegisterPage.vue')
   },
 
