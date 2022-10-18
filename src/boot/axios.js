@@ -19,15 +19,27 @@ const headers = (user.isLoggedIn) ?
                   'Accept'       : 'application/json'
                 } :
                 {
-                  'Content-type' : 'application/json',
-                  'Accept'       : 'application/json'
+                  'Content-type': 'application/json',
+                  'Accept'      : 'application/json'
                 };
 
-const api = axios.create({baseURL         : baseURL,
-                           headers        : headers,
-                           withCredentials: true
-                         })
 
+const api = axios.create({
+                           baseURL        : baseURL,
+                           headers        : headers,
+                           withCredentials: true,
+                         });
+
+// Add a response interceptor
+api.interceptors.response.use(function (response)
+                                {
+                                  return response;
+                                }, function (error)
+                                {
+                                  if(error.response.status===401 && error.response.statusText==="Unauthorized"){
+                                    user.logout();
+                                  }
+                                });
 
 export default boot(({app}) =>
                     {

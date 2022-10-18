@@ -56,12 +56,12 @@ const columns = [
     sortable: true
   },
   {
-    name    : 'date',
-    label   : 'Date',
-    field   : row => (date.formatDate(row.match_date, 'ddd DD MMM YYYY HH:mm')),
-    sort    : (a, b) => date.formatDate(a, 'x') - date.formatDate(b, 'x'),
+    name     : 'date',
+    label    : 'Date',
+    field    : row => (date.formatDate(row.match_date, 'ddd DD MMM YYYY HH:mm')),
+    sort     : (a, b) => date.formatDate(a, 'x') - date.formatDate(b, 'x'),
     sortOrder: 'da',
-    sortable: true
+    sortable : true
   },
 ]
 
@@ -93,10 +93,12 @@ export default {
   },
   methods: {
     fetchData() {
-      api.get(`/stats/${this.character}`).then((response) =>
-                                              {
-                                                this.rows = response.data;
-                                              });
+      api.post('/stat', {
+        name: this.character,
+      }).then((response) =>
+              {
+                this.rows = response.data;
+              });
     },
   }
 }

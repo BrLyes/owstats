@@ -15,9 +15,14 @@ const routes = [
     ],
   },
   {
-    path     : '/register',
+    path: '/register',
     meta     : {mustBeLoggedOut: true},
     component: () => import('pages/RegisterPage.vue')
+  },
+  {
+    path: '/login',
+    meta     : {mustBeLoggedOut: true},
+    component: () => import('pages/LoginPage.vue')
   },
 
   // Always leave this as last one,

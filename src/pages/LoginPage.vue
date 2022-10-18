@@ -10,18 +10,6 @@
           <q-form @submit="onSubmit"
                   class="q-gutter-md q-mt-md">
             <q-input
-              v-model="formData.name"
-              type="text"
-              label="Username"
-              filled
-              :disable="loading"
-              class="q-mb-md"
-              color="primary"
-              autocomplete="name"
-              label-color="primary"
-              input-class="text-primary"
-            />
-            <q-input
               v-model="formData.email"
               type="email"
               label="Email address"
@@ -54,17 +42,6 @@
               </template>
             </q-input>
 
-            <q-input
-              v-model="formData.password_confirmation"
-              type="password"
-              label="Password confirmation"
-              filled
-              :disable="loading"
-              color="primary"
-              autocomplete="new-password"
-              label-color="primary"
-              input-class="text-primary"
-            />
             <div hidden>
               <q-checkbox
                 v-model="formData.rememberMe"
@@ -77,16 +54,25 @@
               />
             </div>
             <div class="q-pt-md row justify-between">
-              <q-btn label="Register"
+              <q-btn label="Login"
                      type="submit"
                      color="primary"
                      icon="login"
                      :loading="loading"
-                     class="col-5 full-width" />
+                     class="col-5" />
+              <q-btn
+                class="col-5"
+                label="Forgot password"
+                disable
+                color="primary"
+                icon="key"
+                :loading="loading"
+                @click="forgetPassword"
+              />
             </div>
           </q-form>
           <div class="flex justify-center q-mt-md">
-            <q-btn @click="goToLogin" class="full-width" label="Already have an account? login"/>
+            <q-btn @click="goToRegister" class="full-width" label="Dont have an account? register"/>
           </div>
         </q-card-section>
       </q-card>
@@ -117,7 +103,7 @@ export default {
   methods: {
     onSubmit() {
       this.loading = true;
-      api.post('/register', this.formData)
+      api.post('/login', this.formData)
           .then((response) =>
           {
             this.userStore.login(response.data.user, response.data.token);
@@ -132,8 +118,12 @@ export default {
           this.loading = false;
         });
     },
-    goToLogin(){
-      this.$router.push('/login');
+    forgetPassword() {
+      //TODO: forgot password page
+      this.$router.push('/forgot-password');
+    },
+    goToRegister(){
+      this.$router.push('/register');
     },
     togglePassword() {
       if (this.passwordType === 'password')
