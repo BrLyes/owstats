@@ -26,6 +26,7 @@
                             class="column no-wrap">
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap ">
               <character-slide character="Ashe"/>
+              <character-slide character="Sojourn" :wip="true"/>
             </div>
           </q-carousel-slide>
         </q-carousel>

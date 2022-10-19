@@ -1,11 +1,16 @@
 <template>
-    <q-btn class="full-height col-1 rounded-borders q-mr-md"
+    <q-btn class="full-height col-2 rounded-borders q-mr-md"
            @click="routeTo(character)"
+           :disable="wip"
            padding="0">
       <q-img class="rounded-borders full-height"
-             src="~assets/img/character/Ashe.png">
-        <div class="absolute-bottom text-subtitle1 text-center">
-          {{ character }}
+             :src="imgSrc">
+        <div :class="
+        {
+          'absolute-bottom text-subtitle1 text-center': !wip,
+          'absolute-full text-subtitle1 flex justify-center items-center': wip
+        }">
+          {{wip ? "Work in progress" : character}}
         </div>
       </q-img>
     </q-btn>
@@ -18,6 +23,11 @@ export default {
         type    : String,
         required: true
       }
+    },
+    wip: {
+      type: Boolean,
+      required: false,
+      default: false,
     }
   },
   methods : {
@@ -27,7 +37,7 @@ export default {
   },
   computed: {
     imgSrc() {
-      return `~assets/img/character/${this.character}.png`;
+      return './img/character/'+this.character+'.png';
     }
   }
 }
