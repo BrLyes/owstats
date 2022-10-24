@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     fetchData() {
-      api.post('/stat', {
+      api.post('/stat-all', {
         name: this.character,
       }).then((response) =>
               {
