@@ -11,6 +11,17 @@ const routes = [
       {
         path     : '/ashe',
         component: () => import('pages/AsheStat.vue'),
+      },
+    ],
+  },
+  {
+    path     : '/',
+    meta     : {requiresAuth: true},
+    component: () => import('layouts/EmptyLayout.vue'),
+    children : [
+      {
+        path     : '/download-tracker',
+        component: () => import('pages/DownloadTracker.vue'),
       }
     ],
   },

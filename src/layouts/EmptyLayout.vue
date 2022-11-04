@@ -11,27 +11,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
-      <div class="q-pa-md full-width">
-        <q-carousel
-          v-model="slide"
-          transition-prev="swipe-right"
-          transition-next="swipe-left"
-          swipeable
-          animated
-          control-color="primary"
-          arrows
-          height="300px"
-          class="bg-grey-1 shadow-2 rounded-borders">
-          <q-carousel-slide :name="1"
-                            class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap ">
-              <character-slide character="Ashe"/>
-              <character-slide character="Sojourn" :wip="true"/>
-            </div>
-          </q-carousel-slide>
-        </q-carousel>
-      </div>
+    <q-page-container class="q-pa-md q-pt-md">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -46,9 +26,6 @@ import {userStore} from 'stores/user';
 
 export default defineComponent({
   name   : 'MainLayout',
-  components:{
-    CharacterSlide
-  },
   setup() {
     return {
       slide: ref(1),
