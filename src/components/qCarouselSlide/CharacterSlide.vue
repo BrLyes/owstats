@@ -1,5 +1,5 @@
 <template>
-    <q-btn class="full-height col-2 rounded-borders q-mr-md"
+    <q-btn class="full-height col-1 rounded-borders q-mr-md"
            :to="character"
            :disable="wip"
            padding="0">
