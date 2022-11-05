@@ -1,6 +1,6 @@
 <template>
     <q-btn class="full-height col-2 rounded-borders q-mr-md"
-           @click="routeTo(character)"
+           :to="character"
            :disable="wip"
            padding="0">
       <q-img class="rounded-borders full-height"
@@ -28,11 +28,6 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
-  },
-  methods : {
-    routeTo(page) {
-      this.$router.push(page);
     }
   },
   computed: {
