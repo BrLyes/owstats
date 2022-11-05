@@ -8,7 +8,7 @@
           {{ name }} v{{version}}
         </q-toolbar-title>
         <q-btn class="bg-secondary text-white q-ma-md"
-               @click="routeTo('download-tracker')">Download tracker
+               @click="goBack()">Return
         </q-btn>
         <q-btn class="bg-secondary text-white q-ma-md"
                @click="userStore.logout()">Logout
@@ -37,8 +37,8 @@ export default defineComponent({
     }
   },
   methods: {
-    routeTo(page) {
-      this.$router.push(page);
+    goBack() {
+      window.history.back();
     },
   },
   data() {
