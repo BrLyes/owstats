@@ -1,6 +1,26 @@
 // app global css in SCSS form
-.appBackground{background: rgb(0,212,255);
-  background: -moz-linear-gradient(180deg, rgba(0,212,255,1) 0%, rgba(0,0,0,0.6979166666666667) 0%, rgba(0,0,0,0.7) 100%);
-  background: -webkit-linear-gradient(180deg, rgba(0,212,255,1) 0%, rgba(0,0,0,0.6979166666666667) 0%, rgba(0,0,0,0.7) 100%);
-  background: linear-gradient(180deg, rgba(0,212,255,1) 0%, rgba(0,0,0,0.6979166666666667) 0%, rgba(0,0,0,0.7) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00d4ff",endColorstr="#000000",GradientType=1);}
+
+//.appBackground {
+//  background: rgb(0, 212, 255);
+//  background: -moz-linear-gradient(180deg, rgba(0, 212, 255, 1) 0%, rgba(0, 0, 0, 0.6979166666666667) 0%, rgba(0, 0, 0, 0.7) 100%);
+//  background: -webkit-linear-gradient(180deg, rgba(0, 212, 255, 1) 0%, rgba(0, 0, 0, 0.6979166666666667) 0%, rgba(0, 0, 0, 0.7) 100%);
+//  background: linear-gradient(180deg, rgba(0, 212, 255, 1) 0%, rgba(0, 0, 0, 0.6979166666666667) 0%, rgba(0, 0, 0, 0.7) 100%);
+//  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00d4ff", endColorstr="#000000", GradientType=1);
+//}
+
+.app-background{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/background/background.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@font-face {
+  font-family: big_noodle_titling;
+  src: url('./fonts/big_noodle_titling.woff')
+}
+
+.ow-font{
+  font-family: big_noodle_titling;
+}

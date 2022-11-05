@@ -1,10 +1,9 @@
 <template>
   <q-layout view="lHh Lpr lFf"
-            class="appBackground">
+            class="app-background">
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title>
-          <!-- TODO: Add logo here -->
           {{ name }} v{{version}}
         </q-toolbar-title>
         <q-btn class="bg-secondary text-white q-ma-md"

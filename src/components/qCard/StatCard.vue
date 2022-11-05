@@ -1,6 +1,6 @@
 <template>
   <q-card class="col-3 q-pa-md no-shadow no-border">
-    <q-card-section class="bg-primary">
+    <q-card-section class="bg-secondary">
       <q-item class="q-pa-none row">
         <q-item-section class="text-white col-3">
           <q-icon :name="icon"
