@@ -51,28 +51,29 @@ import CharacterSlide from 'components/qCarouselSlide/CharacterSlide';
 import CardWithTitle from 'components/qCard/CardWithTitle';
 import {userStore} from 'stores/user';
 
-export default defineComponent({
-                                 name      : 'MainLayout',
-                                 components: {
-                                   CharacterSlide,
-                                   CardWithTitle
-                                 },
-                                 setup() {
-                                   return {
-                                     slide: ref(1),
-                                   }
-                                 },
-                                 methods   : {
-                                   routeTo(page) {
-                                     this.$router.push(page);
-                                   },
-                                 },
-                                 data() {
-                                   return {
-                                     userStore: userStore(),
-                                     version,
-                                     name,
-                                   }
-                                 }
-                               })
+export default defineComponent(
+  {
+    name      : 'MainLayout',
+    components: {
+      CharacterSlide,
+      CardWithTitle,
+    },
+    setup() {
+      return {
+        slide: ref(1),
+      }
+    },
+    methods   : {
+      routeTo(page) {
+        this.$router.push(page);
+      },
+    },
+    data() {
+      return {
+        userStore: userStore(),
+        version,
+        name,
+      }
+    }
+  })
 </script>
