@@ -20,6 +20,8 @@
               autocomplete="email"
               label-color="primary"
               input-class="text-primary"
+              :error="errors.email.hasError"
+              :error-message="errors.email.error"
             />
 
             <q-input
@@ -32,6 +34,8 @@
               autocomplete="new-password"
               label-color="primary"
               input-class="text-primary"
+              :error="errors.password.hasError"
+              :error-message="errors.password.error"
             >
               <template v-slot:append>
                 <q-icon
@@ -98,6 +102,16 @@ export default {
         password_confirmation: '',
         rememberMe           : true,
       },
+      errors : {
+        email : {
+          hasError: false,
+          error: ""
+        },
+        password: {
+          hasError: false,
+          error: "",
+        }
+      }
     };
   },
   methods: {
@@ -109,9 +123,12 @@ export default {
             this.userStore.login(response.data.user, response.data.token);
             this.$router.go('/');
           })
-      .catch((error) =>
+      .catch((errors) =>
          {
-           //TODO: handle errors
+           Object.keys(errors).forEach((error)=> {
+             this.errors[error].hasError=true;
+             this.errors[error].error=errors[error][0];
+           });
          })
       .finally(() =>
         {

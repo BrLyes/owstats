@@ -32,14 +32,20 @@ const api = axios.create({
 
 // Add a response interceptor
 api.interceptors.response.use(function (response)
-                                {
-                                  return response;
-                                }, function (error)
-                                {
-                                  if(error.response.status===401 && error.response.statusText==="Unauthorized"){
+                              {
+                                return response;
+                              }, function (error)
+                              {
+                                if (error.response.status === 401 && error.response.statusText === 'Unauthorized')
+                                  {
                                     user.logout();
                                   }
-                                });
+                                if (error.response.status === 422)
+                                  {
+                                    let errors = error.response.data.errors;
+                                    return Promise.reject(errors);
+                                  }
+                              });
 
 export default boot(({app}) =>
                     {

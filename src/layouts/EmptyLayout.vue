@@ -23,9 +23,7 @@
 
 <script>
 import {defineComponent, ref} from 'vue'
-import {api} from 'boot/axios';
 import {name, version} from '../../package.json'
-import CharacterSlide from 'components/qCarouselSlide/CharacterSlide';
 import {userStore} from 'stores/user';
 
 export default defineComponent({
