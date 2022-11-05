@@ -4,7 +4,7 @@
       <q-card-section class="text-center col-12 bg-primary text-white text-uppercase">
         <div class="text-h5">{{title}}</div>
       </q-card-section>
-      <q-card-section>
+      <q-card-section class="q-pa-none">
         <slot></slot>
       </q-card-section>
       <q-card-section class="bg-primary"/>
