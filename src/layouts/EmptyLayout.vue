@@ -1,13 +1,18 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf"
+            class="appBackground">
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title>
           <!-- TODO: Add logo here -->
           {{ name }} v{{version}}
         </q-toolbar-title>
-        <button @click="routeTo('download-tracker')">Download tracker</button>
-        <button @click="userStore.logout()">Logout</button>
+        <q-btn class="bg-secondary text-white q-ma-md"
+               @click="routeTo('download-tracker')">Download tracker
+        </q-btn>
+        <q-btn class="bg-secondary text-white q-ma-md"
+               @click="userStore.logout()">Logout
+        </q-btn>
       </q-toolbar>
     </q-header>
 
