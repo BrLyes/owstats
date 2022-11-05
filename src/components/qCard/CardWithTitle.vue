@@ -7,6 +7,7 @@
       <q-card-section>
         <slot></slot>
       </q-card-section>
+      <q-card-section class="bg-primary"/>
     </q-card>
   </div>
 </template>
