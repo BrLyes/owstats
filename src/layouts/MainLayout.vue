@@ -1,18 +1,22 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf"
+            class="appBackground">
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title>
-          <!-- TODO: Add logo here -->
-          {{ name }} v{{version}}
+          {{ name }} v{{ version }}
         </q-toolbar-title>
-        <button @click="routeTo('download-tracker')">Download tracker</button>
-        <button @click="userStore.logout()">Logout</button>
+        <q-btn class="bg-secondary text-white q-ma-md"
+               @click="routeTo('download-tracker')">Download tracker
+        </q-btn>
+        <q-btn class="bg-secondary text-white q-ma-md"
+               @click="userStore.logout()">Logout
+        </q-btn>
       </q-toolbar>
     </q-header>
 
     <q-page-container>
-      <div class="q-pa-md full-width">
+      <CardWithTitle title="Select character">
         <q-carousel
           v-model="slide"
           transition-prev="swipe-right"
@@ -22,16 +26,18 @@
           control-color="primary"
           arrows
           height="300px"
-          class="bg-grey-1 shadow-2 rounded-borders">
+          class="bg-grey-1 shadow-2 rounded-borders ">
           <q-carousel-slide :name="1"
-                            class="column no-wrap">
+                            class="column no-wrap overflow-hidden-y">
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap ">
-              <character-slide character="Ashe"/>
-              <character-slide character="Sojourn" :wip="true"/>
+              <character-slide character="Ashe" />
+              <character-slide character="Sojourn"
+                               :wip="true" />
             </div>
           </q-carousel-slide>
         </q-carousel>
-      </div>
+      </CardWithTitle>
+
       <router-view />
     </q-page-container>
   </q-layout>
@@ -42,29 +48,31 @@ import {defineComponent, ref} from 'vue'
 import {api} from 'boot/axios';
 import {name, version} from '../../package.json'
 import CharacterSlide from 'components/qCarouselSlide/CharacterSlide';
+import CardWithTitle from 'components/qCard/CardWithTitle';
 import {userStore} from 'stores/user';
 
 export default defineComponent({
-  name   : 'MainLayout',
-  components:{
-    CharacterSlide
-  },
-  setup() {
-    return {
-      slide: ref(1),
-    }
-  },
-  methods: {
-    routeTo(page) {
-      this.$router.push(page);
-    },
-  },
-  data() {
-    return {
-      userStore: userStore(),
-      version,
-      name,
-    }
-  }
-})
+                                 name      : 'MainLayout',
+                                 components: {
+                                   CharacterSlide,
+                                   CardWithTitle
+                                 },
+                                 setup() {
+                                   return {
+                                     slide: ref(1),
+                                   }
+                                 },
+                                 methods   : {
+                                   routeTo(page) {
+                                     this.$router.push(page);
+                                   },
+                                 },
+                                 data() {
+                                   return {
+                                     userStore: userStore(),
+                                     version,
+                                     name,
+                                   }
+                                 }
+                               })
 </script>

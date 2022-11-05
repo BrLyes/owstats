@@ -1,1 +1,6 @@
 // app global css in SCSS form
+.appBackground{background: rgb(0,212,255);
+  background: -moz-linear-gradient(180deg, rgba(0,212,255,1) 0%, rgba(0,0,0,0.6979166666666667) 0%, rgba(0,0,0,0.7) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(0,212,255,1) 0%, rgba(0,0,0,0.6979166666666667) 0%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(180deg, rgba(0,212,255,1) 0%, rgba(0,0,0,0.6979166666666667) 0%, rgba(0,0,0,0.7) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00d4ff",endColorstr="#000000",GradientType=1);}
