@@ -50,12 +50,6 @@ const columns = [
     sortable: true
   },
   {
-    name    : 'accuracy',
-    label   : 'Accuracy',
-    field   : row => (row.accuracy.toFixed(2)),
-    sortable: true
-  },
-  {
     name     : 'date',
     label    : 'Date',
     field    : row => (date.formatDate(row.match_date, 'ddd DD MMM YYYY HH:mm')),
