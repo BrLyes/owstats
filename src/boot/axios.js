@@ -9,7 +9,7 @@ import {userStore} from 'stores/user';
 // "export default () => {}" function below (which runs individually
 // for each client)
 const user    = userStore();
-const baseURL = 'https://owstatsapi.test/api/';
+const baseURL = 'https://api.stage.owstats.app/api/';
 
 //TODO: Shorten this eventually
 const headers = (user.isLoggedIn) ?
