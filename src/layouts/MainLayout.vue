@@ -7,7 +7,7 @@
           {{ name }} v{{ version }}
         </q-toolbar-title>
         <q-btn class="bg-secondary text-white q-ma-md"
-               to="download-tracker">Download tracker
+               to="/download-tracker">Download tracker
         </q-btn>
         <q-btn class="bg-secondary text-white q-ma-md"
                @click="userStore.logout()">Logout
