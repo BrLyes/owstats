@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     imgSrc() {
-      return './img/character/'+this.character+'.png';
+      return '/img/character/'+this.character+'.png';
     }
   }
 }

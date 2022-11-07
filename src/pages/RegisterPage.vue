@@ -3,7 +3,7 @@
     <div class="col-xs-12 offset-xs-0 col-sm-4 absolute-center cyberpunk-border text-primary">
       <q-card class="col-12">
         <q-card-section class="text-h1 text-primary text-uppercase text-bold text-center text-center">
-          <q-img src="~assets/logo.png"
+          <q-img src="/img/logo.png"
                  style=" max-width: 125px" />
         </q-card-section>
         <q-card-section class="q-pt-none">

@@ -12,7 +12,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howTo/reportIssue.png"
+          <CardSectionWithImage src="/img/howto/report-issue.png"
                                 href="https://github.com/BrLyes/owstatsapi/issues">
             <p>This project is still early in dev so expect bugs, if you find any please use the repo issues board and
                report them, thanks!</p>
@@ -35,7 +35,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howTo/downloadTracker.png"
+          <CardSectionWithImage src="/img/howto/download-tracker.png"
                                 width="250px">
             <p>First download the tracker by clicking:
               <q-btn flat
@@ -62,7 +62,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howTo/downloadTesseract.png"
+          <CardSectionWithImage src="/img/howto/download-tesseract.png"
                                 width="715px">
             <p>Tesseract is an optical character recognition engine for various operating systems. It is free software,
                released under the Apache License. Originally developed by Hewlett-Packard as proprietary software in the
@@ -99,7 +99,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howTo/configAuth.png"
+          <CardSectionWithImage src="/img/howto/config-auth.png"
                                 width="715px">
             <p>
               Almost done, now we just need to configure the tracker correctly open the config.ini from extracted
@@ -112,7 +112,7 @@
             </p>
 
           </CardSectionWithImage>
-          <CardSectionWithImage src="/img/howTo/configTesseract.png"
+          <CardSectionWithImage src="/img/howto/config-tesseract.png"
                                 width="715px">
             <p>
               Now configure set the EXE_LOCATION from tesseract, copy the path you saved in step 2 and paste it in next
@@ -121,7 +121,7 @@
             </p>
 
           </CardSectionWithImage>
-          <CardSectionWithImage src="/img/howTo/configMonitor.png"
+          <CardSectionWithImage src="/img/howto/config-monitor.png"
                                 width="715px">
             <p>
               Finally change the monitor number, this is kind of buggy i suggest you start from 1 and see if it works.
@@ -171,7 +171,7 @@
         <q-card bordered
                 flat>
           <CardSectionWithImage href="https://github.com/InventivetalentDev/OCRwatch"
-                                src="/img/InventivetalentDev/StarOcrWatch.png">
+                                src="/img/inventivetalentdev/star-ocr-watch.png">
             <p>This tracker could not be possible with <a href="https://github.com/InventivetalentDev">Haylee Schäfer
                                                                                                        InventivetalentDev</a>
                amazing
@@ -221,7 +221,7 @@ export default {
       window.open('https://github.com/UB-Mannheim/tesseract/wiki');
     },
     copyAuth() {
-      navigator.clipboard.writeText('Bearer: ' + this.userStore.token);
+      navigator.clipboard.writeText('Bearer ' + this.userStore.token);
     },
     returnHome(){
       this.$router.push('/');
