@@ -1,7 +1,7 @@
 <template>
     <q-btn class="full-height col-1 rounded-borders q-mr-md"
-           :to="character"
            :disable="wip"
+           @click="routeTo"
            padding="0">
       <q-img class="rounded-borders full-height"
              :src="imgSrc">
@@ -30,10 +30,17 @@ export default {
       default: false,
     }
   },
+  methods:{
+    routeTo(){
+      /** This is hacky but only temporary until each character get it's own page **/
+      window.location.href='/#/character/'+this.character;
+      window.location.reload();
+    }
+  },
   computed: {
     imgSrc() {
       return '/img/character/'+this.character+'.png';
-    }
+    },
   }
 }
 </script>

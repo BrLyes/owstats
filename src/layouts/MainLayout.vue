@@ -30,9 +30,9 @@
           <q-carousel-slide :name="1"
                             class="column no-wrap overflow-hidden-y">
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap ">
-              <character-slide character="Ashe" />
-              <character-slide character="Sojourn"
-                               :wip="true" />
+              <character-slide v-for="character in characters"
+                               :key="character.id"
+                               :character="character.name"/>
             </div>
           </q-carousel-slide>
         </q-carousel>
@@ -63,11 +63,22 @@ export default defineComponent(
         slide: ref(1),
       }
     },
+    mounted(){
+      this.getSupportedCharacters();
+    },
     data() {
       return {
         userStore: userStore(),
         version,
         name,
+        characters: [],
+      }
+    },
+    methods:{
+      getSupportedCharacters(){
+        api.get('/chars').then((response) => {
+          this.characters = response.data;
+        })
       }
     }
   })
