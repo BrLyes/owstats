@@ -27,6 +27,7 @@
           arrows
           height="300px"
           class="bg-grey-1 shadow-2 rounded-borders ">
+          <!-- This is not a slider but no need to fix it as the character pick will be refactored to a sidebar list -->
           <q-carousel-slide :name="1"
                             class="column no-wrap overflow-hidden-y">
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap ">
