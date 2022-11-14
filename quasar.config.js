@@ -28,7 +28,8 @@ module.exports = configure(function (ctx) {
     boot: [
       'i18n',
       'axios',
-      'apexcharts'
+      'apexcharts',
+      'vueAnimatedNumber',
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
@@ -40,7 +41,7 @@ module.exports = configure(function (ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-      // 'fontawesome-v6',
+      'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -53,7 +54,6 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
-
       env:{
 
       },
@@ -114,7 +114,7 @@ module.exports = configure(function (ctx) {
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: [],
+    animations: "all",
 
     // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
     ssr: {
@@ -206,7 +206,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-electron-apps/configuring-electron
     electron: {
-      bundler: 'packager', // 'packager' or 'builder'
+      bundler: 'builder', // 'packager' or 'builder'
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
@@ -220,11 +220,23 @@ module.exports = configure(function (ctx) {
         // Windows only
         // win32metadata: { ... }
       },
+      win: {
+        target: [
+          {
+            target: 'nsis',
+            arch: ['x64'],
+          }
+        ],
+      },
 
       builder: {
         // https://www.electron.build/configuration/configuration
+        asar: false,
+        appId: 'owstats',
+        extraFiles: [
+          "tracker/**/*",
+        ],
 
-        appId: 'owstats'
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

@@ -3,36 +3,29 @@
     <q-card-section class="row no-wrap items-center">
       <q-icon :name="icon"
               size="2em" />
-      <div class="text-h5 q-ml-md inline-block">{{ ucFirstStat }} last 30 days ({{ games }} games)</div>
+      <div class="text-h5 q-ml-md inline-block">{{title}}</div>
     </q-card-section>
-    <q-card-section v-if="games>minGames">
-      <apexchart type="area"
+    <q-card-section>
+      <q-skeleton v-if="series===undefined" :height="this.chartOptions.chart.height+'px'" square />
+      <apexchart v-else
+                 ref="apexCharts"
+                 type="area"
                  height="350"
                  :options="chartOptions"
+                 @mounted="mounted"
                  :series="series" />
-    </q-card-section>
-    <q-card-section v-else>
-      <div class="flex-center flex text-h6"
-           style="height: 350px;">
-        Not enough games (at least {{ minGames }} are needed)
-      </div>
     </q-card-section>
   </q-card>
 </template>
 <script>
-import {api} from 'boot/axios';
-import {date} from 'quasar';
-
 export default {
   data() {
     return {
-      series      : null,
-      games       : null,
       chartOptions: {
         chart     : {
           type   : 'area',
           stacked: false,
-          height : 350,
+          height: 380,
           zoom   : {
             type          : 'x',
             enabled       : true,
@@ -40,10 +33,14 @@ export default {
           },
           toolbar: {
             autoSelected: 'zoom'
-          }
+          },
         },
+        stroke    : {
+          curve: 'straight',
+        },
+        colors    : this.colors,
         dataLabels: {
-          enabled: false
+          enabled: true
         },
         markers   : {
           size: 0,
@@ -59,79 +56,70 @@ export default {
           },
         },
         yaxis     : {
-          labels: {
-            formatter: function (val)
-              {
-                return val.toFixed(2);
-              },
-          },
+          decimalsInFloat: 0,
         },
         xaxis     : {
-          type: 'datetime',
+          type           : 'numeric',
+          decimalsInFloat: 0,
+          labels         : {
+            show: false,
+          },
+          tooltip        : {
+            enabled: false,
+          }
         },
         tooltip   : {
-          shared: false,
-          y     : {
-            formatter: function (val)
-              {
-                return val.toFixed(2)
-              }
-          }
+          shared         : true,
+          decimalsInFloat: 0,
+        },
+        legend    : {
+          labels: {}
         }
       },
     }
   },
   props   : {
-    stat     : {
-      type    : String,
-      required: true,
-    },
-    character: {
-      type    : String,
-      required: true,
-    },
-    before   : {
-      type    : String,
-      required: true,
-    },
-    after    : {
-      type    : String,
-      required: true,
-    },
-    minGames : {
+    minGames: {
       type    : Number,
       required: false,
       default : 10
     },
-    icon     : {
+    icon    : {
       type    : String,
       required: false,
+    },
+    series  : {
+      type    : Object,
+      required: true,
+    },
+    colors  : {
+      type    : Array,
+      required: false,
+      default : () =>
+        {
+          return ['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800']
+        }
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false,
     }
   },
-  mounted() {
-    this.fetchData();
-  },
   methods : {
-    fetchData() {
-      api.post('/stat-ovt',
-               {
-                 name  : this.character,
-                 stat  : this.stat,
-                 before: this.before,
-                 after : this.after
-               }).then((response) =>
-                       {
-                         let series = [];
-                         response.data.forEach((entry) =>
-                                               {
-                                                 series.push([parseInt(date.formatDate(entry.match_date, 'x')), entry[this.stat]]);
-                                               });
-                         this.series = [{
-                           name: this.stat,
-                           data: series
-                         }];
-                         this.games  = response.data.length;
-                       });
+    mounted() {
+      this.series.forEach(
+        (series, index) =>
+        {
+          if (index > 0)
+            {
+              this.$refs.apexCharts.toggleSeries(series.name);
+            }
+        });
     }
   },
   computed: {

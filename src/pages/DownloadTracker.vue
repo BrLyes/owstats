@@ -12,7 +12,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howto/report-issue.png"
+          <CardSectionWithImage src="img/howto/report-issue.png"
                                 href="https://github.com/BrLyes/owstatsapi/issues">
             <p>This project is still early in dev so expect bugs, if you find any please use the repo issues board and
                report them, thanks!</p>
@@ -35,7 +35,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howto/download-tracker.png"
+          <CardSectionWithImage src="img/howto/download-tracker.png"
                                 width="250px">
             <p>First download the tracker by clicking:
               <q-btn flat
@@ -62,7 +62,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howto/download-tesseract.png"
+          <CardSectionWithImage src="img/howto/download-tesseract.png"
                                 width="715px">
             <p>Tesseract is an optical character recognition engine for various operating systems. It is free software,
                released under the Apache License. Originally developed by Hewlett-Packard as proprietary software in the
@@ -99,7 +99,7 @@
       >
         <q-card bordered
                 flat>
-          <CardSectionWithImage src="/img/howto/config-auth.png"
+          <CardSectionWithImage src="img/howto/config-auth.png"
                                 width="715px">
             <p>
               Almost done, now we just need to configure the tracker correctly open the config.ini from extracted
@@ -112,7 +112,7 @@
             </p>
 
           </CardSectionWithImage>
-          <CardSectionWithImage src="/img/howto/config-tesseract.png"
+          <CardSectionWithImage src="img/howto/config-tesseract.png"
                                 width="715px">
             <p>
               Now configure set the EXE_LOCATION from tesseract, copy the path you saved in step 2 and paste it in next
@@ -121,7 +121,7 @@
             </p>
 
           </CardSectionWithImage>
-          <CardSectionWithImage src="/img/howto/config-monitor.png"
+          <CardSectionWithImage src="img/howto/config-monitor.png"
                                 width="715px">
             <p>
               Finally change the monitor number, this is kind of buggy i suggest you start from 1 and see if it works.
@@ -131,31 +131,41 @@
           <q-separator />
           <q-card-section class="text-center">
             <q-btn class="bg-primary text-white full-width"
-                   @click="configureTrackerOpen=false; testTrackerOpen=true">Continue
+                   @click="configureTrackerOpen=false; usingTrackerOpen=true">Continue
             </q-btn>
           </q-card-section>
         </q-card>
       </q-expansion-item>
       <q-expansion-item
-        v-model="testTrackerOpen"
+        v-model="usingTrackerOpen"
         expand-separator
         class="bg-primary bg-color-transition"
         header-class="text-white"
         expand-icon-class="text-white"
-        label="4- Test tracker"
+        label="4- Using the tracker"
       >
         <q-card bordered
                 flat>
           <q-card-section>
             You are all setup, now just double click the exe and a console will open, don't panic leave it open in the
-            background and start Overwatch (2), join a game and wait for it to start then press tab and it should work,
-            if it doesnt then maybe it's a bug or something is not configured write, open an issue in github and i'll
-            try to help you (step 1)
+            background and start Overwatch (2)
+            <CardSectionWithImage src="img/howTo/tracker-console.png" width="715px"/>
+            Play a game and <b>NEAR the end</b>  press F12, the scoreboard should pop for a 2 seconds or so and then close it's 100% fine and expected, the way this works is that it scraps the scoreboard for data before sending it so leave it open and dont press any button during this process.
+            <CardSectionWithImage src="img/howTo/scoreboard-screenshot.png" width="715px"/>
+            <b>Please note if you press too late the scoreboard will be missing your character name and it will fail</b>
+            <CardSectionWithImage src="img/howTo/post-game.png" width="715px"/>
+            I dont know why it does that but... i dont have a fix for it yet... anyways, if you done everything correctly, after a few seconds stats should come up and you can refresh owstats and see them! :D
+          </q-card-section>
+          <q-separator/>
+          <q-card-section class="q-pa-none">
+            <div class="text-h6 bg-warning text-white q-pa-md">
+              I know this is not ideal i'm working on a script that does this automatically but i'm having alot of issues detecting the end of the game plus the fact the character name is missing at the end does not help at all :l
+            </div>
           </q-card-section>
           <q-separator />
           <q-card-section class="text-center">
             <q-btn class="bg-primary text-white full-width"
-                   @click="testTrackerOpen=false; creditsOpen=true">Continue
+                   @click="usingTrackerOpen=false; creditsOpen=true">Continue
             </q-btn>
           </q-card-section>
         </q-card>
@@ -171,7 +181,7 @@
         <q-card bordered
                 flat>
           <CardSectionWithImage href="https://github.com/InventivetalentDev/OCRwatch"
-                                src="/img/inventivetalentdev/star-ocr-watch.png">
+                                src="img/inventivetalentdev/star-ocr-watch.png">
             <p>This tracker could not be possible with <a href="https://github.com/InventivetalentDev">Haylee Schäfer
                                                                                                        InventivetalentDev</a>
                amazing
@@ -202,11 +212,11 @@ export default {
   data() {
     return {
       userStore            : userStore(),
-      disclaimerOpen       : true,
+      disclaimerOpen       : false,
       downloadTrackerOpen  : false,
       downloadTesseractOpen: false,
       configureTrackerOpen : false,
-      testTrackerOpen      : false,
+      usingTrackerOpen     : true,
       creditsOpen          : false,
     }
   },

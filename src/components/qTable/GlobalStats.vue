@@ -1,10 +1,11 @@
 <template>
+  <q-skeleton v-show="!rows" type="square" height="100%"/>
   <q-table
+    v-show="rows"
     class="my-sticky-header-table"
     ref="globalStatsTable"
     :rows="rows"
     :columns="columns"
-    title="Global stats"
     row-key="id"
     virtual-scroll
     :rows-per-page-options="[10]"
@@ -13,7 +14,6 @@
   />
 </template>
 <script>
-import {api} from 'boot/axios';
 import {date} from 'quasar';
 
 const columns = [
@@ -61,18 +61,9 @@ const columns = [
 
 export default {
   props  : {
-    extraColumns: {
-      type    : Array,
-      required: false,
-    },
-    character   : {
-      name    : String,
-      required: true,
-    }
-  },
-  data() {
-    return {
-      rows: []
+    rows: {
+      type: Array,
+      required: true
     }
   },
   setup() {
@@ -81,19 +72,7 @@ export default {
     }
   },
   mounted() {
-    columns.concat(this.extraColumns);
-    this.fetchData();
     this.$refs.globalStatsTable.sort('date')
   },
-  methods: {
-    fetchData() {
-      api.post('/stat-all', {
-        name: this.character,
-      }).then((response) =>
-              {
-                this.rows = response.data;
-              });
-    },
-  }
 }
 </script>

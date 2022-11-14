@@ -23,7 +23,7 @@
 
 <script>
 import {defineComponent, ref} from 'vue'
-import {name, version} from '../../package.json'
+import packageInfo from '../../package.json'
 import {userStore} from 'stores/user';
 
 export default defineComponent({
@@ -41,8 +41,8 @@ export default defineComponent({
   data() {
     return {
       userStore: userStore(),
-      version,
-      name,
+      version: packageInfo.version,
+      name: packageInfo.name,
     }
   }
 })
