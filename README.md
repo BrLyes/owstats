@@ -2,8 +2,8 @@
 
 Stage version hosted on : https://stage.owstats.app/
 
-##Current working item
-- Custom theme
+## Current working item
+- Better UI
 
-##Roadmap
-* Support for sojourn
+## Roadmap
+* Autosetup tracker config.ini
